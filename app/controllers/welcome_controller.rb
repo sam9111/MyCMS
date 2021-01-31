@@ -1,2 +1,16 @@
 class WelcomeController < ApplicationController
+  skip_before_action :ensure_user_logged_in
+
+  def index
+    if current_user
+      user = current_user
+      if user.role == "customer"
+        redirect_to menus_path
+      elsif user.role == "owner"
+        redirect_to orders_path
+      end
+    else
+      render "index"
+    end
+  end
 end

@@ -1,3 +1,23 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer base {
+  h1 {
+    @apply text-3xl font-black;
+  }
+
+  h2 {
+    @apply text-xl font-extrabold;
+  }
+
+  p {
+    @apply text-lg font-medium;
+  }
+  body {
+    @apply font-sans max-w-lg mx-auto justify-center;
+  }
+  a {
+    @apply text-blue-600 underline;
+  }
+}
