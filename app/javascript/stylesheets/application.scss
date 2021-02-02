@@ -4,20 +4,28 @@
 
 @layer base {
   h1 {
-    @apply text-3xl font-black;
+    @apply text-5xl font-black;
   }
 
   h2 {
-    @apply text-xl font-extrabold;
+    @apply text-3xl font-extrabold my-8;
   }
 
-  p {
-    @apply text-lg font-medium;
-  }
   body {
-    @apply font-sans max-w-lg mx-auto justify-center;
+    @apply text-2xl font-medium font-sans;
   }
+
   a {
-    @apply text-blue-600 underline;
+    @apply bg-blue-800 text-white border-0 rounded-xl px-8 py-2 my-3 text-5xl;
+  }
+
+  .form {
+    @apply border-black border-4 rounded-3xl text-center p-14;
+  }
+  .form-input {
+    @apply bg-gray-300 my-4;
+  }
+  .form-btn {
+    @apply bg-green-600 text-white border-0 rounded-xl px-8 py-2 my-3;
   }
 }

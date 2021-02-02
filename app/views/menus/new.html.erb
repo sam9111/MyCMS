@@ -1,0 +1,5 @@
+<%= form_with url: menus_path do |form|%>
+  <p>Name of menu:</p>
+  <%= form.text_field :name %>
+  <%= form.submit "Add"%>
+<% end %>

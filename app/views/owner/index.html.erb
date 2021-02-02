@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+  <p><%= user.name %></p>
+<% end %>
+<%= link_to "Create new menu",new_menu_path %>
+<% @menus.each do |menu| %>
+  <p><%= menu.name %></p>
+  <%= link_to "Go",menu_path(id: menu.id) %>
+<% end %>

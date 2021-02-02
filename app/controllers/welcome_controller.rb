@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
       if user.role == "customer"
         redirect_to menus_path
       elsif user.role == "owner"
-        redirect_to orders_path
+        redirect_to owner_path
       end
     else
       render "index"

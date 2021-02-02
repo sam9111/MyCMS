@@ -1,12 +1,12 @@
-<p >Welcome new user!</p>
-<section>
+<h2 class="text-center">Welcome new customer!</h2>
+<section class="form">
   <%= form_with url: users_path do |form| %>
-    <p>Name: </p>
-    <%= form.text_field :name %>
-    <p>Email: </p>
-    <%= form.email_field :email %>
-    <p>Password: </p>
-    <%= form.password_field :password%>
-    <%= form.submit "Signup" %>
+    <p >Name </p>
+    <%= form.text_field :name ,class:"form-input" %>
+    <p>Email </p>
+    <%= form.email_field :email ,class:"form-input" %>
+    <p>Password </p>
+    <%= form.password_field :password,class:"form-input" %>
+    <div><%= form.submit "Signup",class:"form-btn" %></div>
   <% end %>
 </section>

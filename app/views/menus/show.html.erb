@@ -1,0 +1,16 @@
+<%= Menu.find(@current_menu_id).name%>
+<%= form_with url: menu_items_path do |form|%>
+  <%= form.label :name, "Item name:" %>
+  <%= form.text_field :name %>
+  <%= form.label :description, "Description:" %>
+  <%= form.text_area :description, size: "30x2" %>
+  <%= form.label :price, "Price:" %>
+  <%= form.number_field :price ,step: 0.5%>
+  <%= form.hidden_field :menu_id,:value => @current_menu_id %>
+  <%= form.submit "Add"%>
+<% end %>
+<% if @menu_items%>
+  <% @menu_items.each do |menuItem| %>
+    <p><%= menuItem.name %></p>
+  <% end %>
+<% end %>

@@ -1,1 +1,5 @@
 <h1>Menu!</h1>
+<% @menus.each do |menu| %>
+  <p><%= menu.name %></p>
+  <%= link_to "Go",menu_path(id: menu.id) %>
+<% end %>
