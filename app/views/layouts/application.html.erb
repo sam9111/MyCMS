@@ -10,14 +10,14 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="m-5">
-      <h1>myCMS</h1>
+    <div class=" fixed flex flex-col bg-black min-h-full text-white text-center ">
+      <h1 class="m-5">myCMS</h1>
       <% if @current_user %>
-        <p>Logged in as: <%= @current_user.name %></p>
-        <%= link_to "Signout",destroy_sessions_path ,method: "delete"%>
+        <p class=" text-base p-8">Logged in as: <%= @current_user.name.capitalize %></p>
+        <%= link_to "Signout",destroy_sessions_path ,method: "delete",class: "py-4 px-8 text-base mx-4" %>
       <% end %>
     </div>
-    <div class="max-w-2xl flex  m-auto flex-col align-items-center p-4 justify-center">
+    <div class="max-w-5xl flex  ml-60 flex-col align-items-center justify-center ">
       <section class="m-4 text-red-600 text-center">
         <% if flash[:error] %>
           <p><%= flash[:error] %></p>

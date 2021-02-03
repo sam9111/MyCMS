@@ -1,8 +1,15 @@
-<% @users.each do |user| %>
-  <p><%= user.name %></p>
-<% end %>
-<%= link_to "Create new menu",new_menu_path %>
-<% @menus.each do |menu| %>
-  <p><%= menu.name %></p>
-  <%= link_to "Go",menu_path(id: menu.id) %>
-<% end %>
+<div class="flex-row flex">
+  <li class="flex flex-col ml-40">
+    <h2 class=" pb-20  text-4xl">All Users</h2>
+    <% @users.each do |user| %>
+      <ul class="text py-2"><%= user.name.capitalize %></ul>
+    <% end %>
+  </li>
+  <section class="flex flex-col mx-40 ">
+    <h2 class=" pb-20  text-4xl">All Menus</h2>
+    <% @menus.each do |menu| %>
+      <%= link_to menu.name ,menu_path(id: menu.id),class: "text-2xl text-center py-4 px-14  my-4 bg-blue-400" %>
+    <% end %>
+    <%= link_to "Create new menu",new_menu_path,class:  " text-2xl text-center py-4 px-10  my-4" %>
+  </section>
+  <div>
