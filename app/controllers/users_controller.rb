@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in
-
+skip_before_action :ensure_user_is_owner
   def create
-    name = params[:name]
+    name = params[:name].capitalize
     email = params[:email]
     password = params[:password]
     user = User.new(name: name, email: email, password: password, role: "customer")

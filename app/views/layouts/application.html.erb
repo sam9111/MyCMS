@@ -11,22 +11,33 @@
   </head>
   <body>
     <div class=" fixed flex flex-col bg-black min-h-full text-white text-center ">
-      <h1 class="m-5">myCMS</h1>
       <% if @current_user %>
-        <p class=" text-base p-8">Logged in as: <%= @current_user.name.capitalize %></p>
-        <%= link_to "Signout",destroy_sessions_path ,method: "delete",class: "py-4 px-8 text-base mx-4" %>
+        <%if @current_user.role=="owner" %>
+          <%= link_to "myCMS" ,owner_path ,class:"m-5 text-5xl font-black" %>
+        <% else %>
+          <%= link_to "myCMS" ,menus_path ,class:"m-5 text-5xl font-black" %>
+        <% end %>
+      <%else %>
+        <h1 class="m-5">myCMS</h1>
+      <%end%>
+      <% if @current_user %>
+        <p class=" text-base py-8 ">Logged in as:
+          <br>
+          <%= @current_user.name %></br>
+        (<%= @current_user.role%>)</p>
+      <%= link_to "Signout",destroy_sessions_path ,method: "delete",class: "btn py-4 px-8 text-base mx-4" %>
+    <% end %>
+  </div>
+  <div class="max-w-5xl flex  ml-60 flex-col align-items-center justify-center ">
+    <section class="m-10 text-red-600 text-center">
+      <% if flash[:error] %>
+        <p><%= flash[:error] %></p>
       <% end %>
-    </div>
-    <div class="max-w-5xl flex  ml-60 flex-col align-items-center justify-center ">
-      <section class="m-4 text-red-600 text-center">
-        <% if flash[:error] %>
-          <p><%= flash[:error] %></p>
-        <% end %>
-        <% if flash[:notice] %>
-          <p ><%= flash[:notice] %></p>
-        <% end %>
-      </section>
-      <%= yield %>
-    </div>
-  </body>
+      <% if flash[:notice] %>
+        <p ><%= flash[:notice] %></p>
+      <% end %>
+    </section>
+    <%= yield %>
+  </div>
+</body>
 </html>

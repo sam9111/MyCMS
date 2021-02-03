@@ -1,5 +1,8 @@
-<%= form_with url: menus_path do |form|%>
-  <p>Name of menu:</p>
-  <%= form.text_field :name %>
-  <%= form.submit "Add"%>
-<% end %>
+<h2 class="text-center">Create Menu</h2>
+<section class="form mx-40 my-10 ">
+  <%= form_with url: menus_path do |form|%>
+    <p>Name of new menu</p>
+    <%= form.text_field :name,class:"form-input my-4" %>
+    <div><%= form.submit "Submit" ,class:"form-btn my-5"%></div>
+  <% end %>
+</section>

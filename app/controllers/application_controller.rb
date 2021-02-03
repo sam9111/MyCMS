@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :ensure_user_is_owner
   before_action :ensure_user_logged_in
 
   def current_user
@@ -8,6 +9,14 @@ class ApplicationController < ActionController::Base
       @current_user = User.find(current_user_id)
     else
       nil
+    end
+  end
+
+  def ensure_user_is_owner
+    if User.find(session[:current_user_id]).role == "owner"
+      return true
+    else
+      redirect_to menus_path
     end
   end
 

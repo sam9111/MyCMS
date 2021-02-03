@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   skip_before_action :ensure_user_logged_in
+  skip_before_action :ensure_user_is_owner
 
   def index
     if current_user
