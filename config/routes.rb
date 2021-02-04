@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   delete "/signout", to: "sessions#destroy", as: :destroy_sessions
 
   get "/owner", to: "owner#index", as: :owner
+  get "/customer", to: "customer#index", as: :customer
+  get "/cart", to: "cart#index", as: :cart
 end

@@ -15,8 +15,6 @@ class ApplicationController < ActionController::Base
   def ensure_user_is_owner
     if User.find(session[:current_user_id]).role == "owner"
       return true
-    else
-      redirect_to menus_path
     end
   end
 

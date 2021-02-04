@@ -1,6 +1,4 @@
 class MenusController < ApplicationController
-  skip_before_action :ensure_user_is_owner, only: [:index, :show]
-
   def index
     @menus = Menu.all
     render "index"
@@ -12,7 +10,8 @@ class MenusController < ApplicationController
     if menu.save
       redirect_to owner_path, notice: "#{name} menu was successfully created!"
     else
-      flash[:error] = menu.errors.full_messages.join("\n")
+      flash[:error] = menu.errors.full_messages.join(", ")
+      redirect_to new_menu_path
     end
   end
 
@@ -21,7 +20,6 @@ class MenusController < ApplicationController
     @current_menu_id = params[:id]
     @menu_items = MenuItem.where(menu_id: @current_menu_id)
     @menu = Menu.find(@current_menu_id)
-    render "show"
   end
 
   def update
@@ -31,7 +29,8 @@ class MenusController < ApplicationController
     if menu.save
       redirect_to menu_path(:id => menu.id), notice: "#{menu.name.capitalize} menu was successfully set #{active_status}!"
     else
-      flash[:error] = menu.errors.full_messages.join("\n")
+      flash[:error] = menu.errors.full_messages.join(", ")
+      redirect_to menu_path(id: menu.id)
     end
   end
 end

@@ -4,7 +4,7 @@
     <% @menu_items.each do |menuItem| %>
       <div class="btn text-2xl text-center py-4 px-10  my-4 bg-red-400 mx-80 inline-flex " >
         <%= link_to menuItem.name,menu_item_path(id:menuItem.id,menu_id:@current_menu_id)%>
-        <p class="ml-auto">$<%= menuItem.price %></p>
+        <p class="mx-auto">$<%= menuItem.price %></p>
         <%if @is_owner%>
           <%= link_to image_tag("https://img.icons8.com/cute-clipart/40/000000/delete.png", alt: 'Trash-icon'),menu_item_path(id:menuItem.id,menu_id:@current_menu_id),method: "delete",class:"ml-auto"%>
         <% end %>
