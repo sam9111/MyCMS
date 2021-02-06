@@ -17,8 +17,8 @@
   <%if @is_owner%>
     <%= link_to "Add items!",new_menu_item_path(menu_id:@current_menu_id),class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-400 mx-80" %>
     <% if @menu.active==true %>
-      <%= link_to "Set menu as inactive",menu_path(id:@current_menu_id,active: false),method:"patch",class: "btn text-2xl bg-blue-700 text-center py-4 px-14  my-4 bg-blue-400 mx-80" %>
+      <%= link_to "Set menu as inactive",menu_path(id:@current_menu_id),method:"put",class: "btn text-2xl bg-blue-700 text-center py-4 px-14  my-4 bg-blue-400 mx-80" %>
     <% else %>
-      <%= link_to "Set menu as active",menu_path(id:@current_menu_id,active: true),method:"patch",class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-700 mx-80" %>
+      <%= link_to "Set menu as active",menu_path(id:@current_menu_id,active: true),method:"put",class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-700 mx-80" %>
     <%end%>
   <%end%>

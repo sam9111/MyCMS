@@ -1,4 +1,4 @@
-<h2 class="text-center text-4xl pb-10"> Your Order</h2>
+<h2 class="text-center text-4xl pb-10">Order</h2>
 <p class="text-center text-3xl mb-10">ID: <%=@order.id%></p>
 <section >
   <ol class="flex flex-col mx-80 border-black border-4 rounded-3xl text-center py-4"><% @order_items.each do |item| %>
@@ -9,4 +9,9 @@
       </li>
     <% end%>
   </ol>
+  <% if @order.delivered_at %>
+    <p class="p-4 text-center  mt-10">Delivered on <%= order.delivered_at.to_date %></p>
+  <% else %>
+    <p class="p-4 text-red-600 text-center mt-20">Not delivered yet</p>
+  <% end %>
 </section>

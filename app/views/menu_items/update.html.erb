@@ -1,0 +1,13 @@
+<h2 class=" pb-10 text-4xl ml-40"><%= @menu_item %></h2>
+<section class="form mx-40 my-10 ">
+  <%= form_with url: menu_item_path(@menu_item.id),method: "put" do |form|%>
+    <p> <%= form.label :name, "Item name" %></p>
+    <%= form.text_field :name ,class:"form-input my-4"%>
+    <p>  <%= form.label :description, "Description" %></p>
+    <%= form.text_area :description, size: "30x2" ,class:"form-input my-4"%>
+    <p>  <%= form.label :price, "Price" %></p>
+    <%= form.number_field :price ,step: 0.5,class:"form-input my-4"%>
+    <%= form.hidden_field :menu_id,:value => @current_menu_id,class:"form-input my-4" %>
+    <div> <%= form.submit "Add",class:"form-btn my-5"%></div>
+  <% end %>
+</section>

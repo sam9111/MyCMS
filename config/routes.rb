@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   get "/cart", to: "cart#index", as: :cart
   patch "/cart", to: "cart#update", as: :update_cart
   put "/cart", to: "cart#delete_item", as: :delete_cart_item
+  get "/menu_item/update", to: "menu_items#update", as: :update_menu_item
 end

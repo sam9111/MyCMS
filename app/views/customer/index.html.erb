@@ -1,13 +1,17 @@
-<h1 class="text-center "> Today's Menu</h1>
-<h2 class=" py-10  text-4xl mx-auto underline"><%=@active_menu.name.capitalize %></h2>
-<section class="grid gap-4 grid-cols-3">
-  <% if @menu_items.any?%>
-    <% @menu_items.each do |menuItem| %>
-      <div class="btn text-2xl text-center py-8 px-10  my-4 bg-purple-500 mx-4 flex flex-col space-y-4" >
-        <p class="mx-auto"><%= menuItem.name %></p>
-        <p class="mx-auto">$<%= menuItem.price %></p>
-        <%= link_to "+",menu_item_path(id:menuItem.id,menu_id:@current_menu_id)%>
-      </div>
+  <% if @active_menu%>
+  <h1 class="text-center "> Today's Menu</h1>
+  <h2 class=" py-10  text-4xl mx-auto underline"><%=@active_menu.name.capitalize %></h2>
+  <section class="grid gap-4 grid-cols-3">
+    <% if @menu_items.any?%>
+      <% @menu_items.each do |menuItem| %>
+        <div class="btn text-2xl text-center py-8 px-10  my-4 bg-purple-500 mx-4 flex flex-col space-y-4" >
+          <p class="mx-auto"><%= menuItem.name %></p>
+          <p class="mx-auto">$<%= menuItem.price %></p>
+          <%= link_to "+",menu_item_path(id:menuItem.id,menu_id:@current_menu_id)%>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</section>
+  </section>
+<% else%>
+  <h1 class="text-center text-red-600 ">No menus are active at the moment!</h1>
+<% end %>

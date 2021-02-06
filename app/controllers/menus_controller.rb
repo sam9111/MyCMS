@@ -26,17 +26,18 @@ class MenusController < ApplicationController
   def update
     active_status = params[:active]
     menu = Menu.find(params[:id])
-    if active_status == true and Menu.exists?(active: true)
-      flash[:error] = "#{Menu.find_by(active: true).name} menu is already active!"
-      redirect_to menu_path(params[:id]) and return
-    else
+    if active_status
+      if Menu.where(active: true).any?
+        flash[:error] = "#{Menu.find_by(active: true).name} menu is already active!"
+        redirect_to menu_path(params[:id]) and return
+      end
       if !MenuItem.where(menu_id: menu.id).any?
         flash[:error] = "#{menu.name} menu is empty! Cannot set it active!"
         redirect_to menu_path(params[:id]) and return
       end
-      menu.active = active_status
-      menu.save
-      redirect_to menu_path(:id => menu.id), notice: "#{menu.name.capitalize} menu was successfully set #{active_status}!"
     end
+    menu.active = active_status
+    menu.save
+    redirect_to menu_path(:id => menu.id), notice: "#{menu.name.capitalize} menu was successfully set #{active_status ? true : false}!"
   end
 end

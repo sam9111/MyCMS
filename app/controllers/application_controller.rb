@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     return true if User.find(session[:current_user_id]).role == "customer"
   end
 
+  def owner
+    return true if User.find(session[:current_user_id]).role == "owner"
+  end
+
   def ensure_user_logged_in
     unless current_user
       redirect_to root_path

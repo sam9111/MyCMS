@@ -1,6 +1,13 @@
 class OrdersController < ApplicationController
   skip_before_action :ensure_user_is_owner
 
+  def index
+    @is_customer = customer
+    @is_owner = owner
+    @orders = Order.all
+    @orders_customer = Order.where(user_id: session[:current_user_id])
+  end
+
   def new
     total = params[:total]
     new_order = Order.new(date: DateTime.now, user_id: session[:current_user_id], total: total)

@@ -11,4 +11,7 @@
       <div> <%= form.submit "Add to cart!",class: "btn text-2xl text-center py-4 px-14 my-5  bg-green-400 " %></div>
     <% end %>
   <% end %>
+  <% if @is_owner%>
+    <%= link_to "Edit item!",update_menu_item_path(id: @menuItem.id,menu_id:@menu_id),class: "btn text-2xl text-center py-4 px-14  my-10 bg-blue-400 mx-80" %>
+  <% end %>
 </section>

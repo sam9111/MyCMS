@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in
-skip_before_action :ensure_user_is_owner
+  skip_before_action :ensure_user_is_owner
+
   def create
     name = params[:name].capitalize
     email = params[:email]
