@@ -1,6 +1,7 @@
 class MenusController < ApplicationController
   def index
     @menus = Menu.all
+
     render "index"
   end
 
@@ -25,12 +26,17 @@ class MenusController < ApplicationController
   def update
     active_status = params[:active]
     menu = Menu.find(params[:id])
-    menu.active = active_status
-    if menu.save
-      redirect_to menu_path(:id => menu.id), notice: "#{menu.name.capitalize} menu was successfully set #{active_status}!"
+    if active_status == true and Menu.exists?(active: true)
+      flash[:error] = "#{Menu.find_by(active: true).name} menu is already active!"
+      redirect_to menu_path(params[:id]) and return
     else
-      flash[:error] = menu.errors.full_messages.join(", ")
-      redirect_to menu_path(id: menu.id)
+      if !MenuItem.where(menu_id: menu.id).any?
+        flash[:error] = "#{menu.name} menu is empty! Cannot set it active!"
+        redirect_to menu_path(params[:id]) and return
+      end
+      menu.active = active_status
+      menu.save
+      redirect_to menu_path(:id => menu.id), notice: "#{menu.name.capitalize} menu was successfully set #{active_status}!"
     end
   end
 end

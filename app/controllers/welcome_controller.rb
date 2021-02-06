@@ -6,6 +6,7 @@ class WelcomeController < ApplicationController
     if current_user
       user = current_user
       if user.role == "customer"
+        session[:cart] = []
         redirect_to customer_path
       elsif user.role == "owner"
         redirect_to owner_path

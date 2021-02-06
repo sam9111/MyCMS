@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get "/owner", to: "owner#index", as: :owner
   get "/customer", to: "customer#index", as: :customer
   get "/cart", to: "cart#index", as: :cart
+  patch "/cart", to: "cart#update", as: :update_cart
+  put "/cart", to: "cart#delete_item", as: :delete_cart_item
 end

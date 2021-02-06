@@ -1,0 +1,12 @@
+<h2 class="text-center text-4xl pb-10"> Your Order</h2>
+<p class="text-center text-3xl mb-10">ID: <%=@order.id%></p>
+<section >
+  <ol class="flex flex-col mx-80 border-black border-4 rounded-3xl text-center py-4"><% @order_items.each do |item| %>
+      <li class="inline-flex p-8">
+        <p class=""><%= item.menu_item_name%></p>
+        <p class="ml-auto">$<%= item.menu_item_price%></p>
+        <p class="ml-auto"><%= item.quantity%></p>
+      </li>
+    <% end%>
+  </ol>
+</section>

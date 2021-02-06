@@ -32,12 +32,12 @@
     <% end %>
   </div>
   <div class="max-w-5xl flex  ml-60 flex-col align-items-center justify-center ">
-    <section class="m-10 text-red-600 text-center">
+    <section class="m-10  text-center">
       <% if flash[:error] %>
-        <p><%= flash[:error] %></p>
+        <p class="text-red-600"><%= flash[:error] %></p>
       <% end %>
       <% if flash[:notice] %>
-        <p ><%= flash[:notice] %></p>
+        <p class="text-green-600"><%= flash[:notice] %></p>
       <% end %>
     </section>
     <%= yield %>

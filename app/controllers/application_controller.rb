@@ -13,9 +13,15 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_user_is_owner
-    if User.find(session[:current_user_id]).role == "owner"
+    if User.find(session[:current_user_id]).role != "owner"
+      redirect_to customer_path
+    else
       return true
     end
+  end
+
+  def customer
+    return true if User.find(session[:current_user_id]).role == "customer"
   end
 
   def ensure_user_logged_in

@@ -1,1 +1,14 @@
-
+<section class="flex space-y-10 flex-col">
+  <h1 class="  mx-auto"><%=@menuItem.name.capitalize %></h1>
+  <p class=" whitespace-pre-wrap mx-20 text-center"><%= @menuItem.description %></p>
+  <h2 class="text-center  text-5xl text-green-800">$<%= @menuItem.price%></h2>
+</section>
+<% if @is_customer%>
+  <section class=" mx-auto flex flex-col my-10 text-center ">
+    <%= form_with url:update_cart_path(id: @menuItem.id),method: "patch" do |form|%>
+      <p class="my-5 "> <%= form.label :quantity,"How many would you like to buy?"%></p>
+      <%= form.number_field :quantity ,step: 1,class:"form-input text-center mx-40"%>
+      <div> <%= form.submit "Add to cart!",class: "btn text-2xl text-center py-4 px-14 my-5  bg-green-400 " %></div>
+    <% end %>
+  <% end %>
+</section>

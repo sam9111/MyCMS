@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :ensure_user_logged_in
-skip_before_action :ensure_user_is_owner
+  skip_before_action :ensure_user_is_owner
+
   def new
   end
 
@@ -17,6 +18,7 @@ skip_before_action :ensure_user_is_owner
 
   def destroy
     session[:current_user_id] = nil
+    session[:cart] = nil
     @current_user = nil
     redirect_to root_path
   end

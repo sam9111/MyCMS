@@ -1,1 +1,20 @@
-cart index
+<h2 class="text-center text-4xl pb-10"> Your Cart</h2>
+<% if @cart.any?%>
+  <% @cart.each do |cartItem| %>
+    <div class="btn bg-blue-300 text-2xl  py-8 px-10  my-4  mx-80 inline-flex " >
+      <%= link_to MenuItem.find(cartItem["menu_item_id"]).name,menu_item_path(id:cartItem["menu_item_id"])%>
+      <p class="ml-auto">$<%= MenuItem.find(cartItem["menu_item_id"]).price%></p>
+      <p class="ml-auto"><%= cartItem["quantity"]%></p>
+      <%= link_to image_tag("https://img.icons8.com/cute-clipart/40/000000/delete.png", alt: 'Trash-icon'),
+      delete_cart_item_path(id:cartItem["menu_item_id"]),
+      method: "put",class:"ml-auto" %>
+    </div>
+  <% end %>
+  <% if @total!=0%>
+    <h2 class="mx-auto mt-auto  p-5 text-green-800">Total: $<%= @total %></h2>
+  <% end %>
+  <%= link_to "Place your order!",new_order_path(total: @total),class: "btn text-2xl text-center py-4 px-14  mt-auto bg-green-600 mx-80" %>
+<% else %>
+  <p class=" pt-20 mx-auto text-red-600 my-10 ">Cart is empty!</p>
+  <%= link_to "Add items to cart!",customer_path,class: "btn text-2xl text-center py-4 px-14  my-20 bg-blue-600 mx-80" %>
+<% end %>

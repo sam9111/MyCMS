@@ -7,7 +7,9 @@ class MenuItemsController < ApplicationController
   end
 
   def show
-    menuItem_id = params[:id]
+    @menuItem = MenuItem.find(params[:id])
+    @menu_id = params[:menu_id]
+    @is_customer=customer
   end
 
   def create
