@@ -33,4 +33,16 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: params[:id])
   end
+
+  def update
+    order_id = params[:id]
+    order = Order.find(order_id)
+    order.delivered_at = DateTime.now
+    if order.save
+      redirect_to owner_path, notice: "Order was successfully updated!"
+    else
+      flash[:error] = order.errors.full_messages.join(", ")
+      redirect_to owner_path
+    end
+  end
 end

@@ -7,7 +7,7 @@ class MenuItemsController < ApplicationController
   end
 
   def show
-    @menuItem = MenuItem.find(params[:id])
+    @menuItem = MenuItem.find_by(id: params[:id], deletable: nil)
     @menu_id = params[:menu_id]
     @is_customer = customer
     @is_owner = owner
@@ -15,7 +15,7 @@ class MenuItemsController < ApplicationController
 
   def create
     name = params[:name].capitalize
-    description = params[:description].capitalize
+    description = params[:description]
     price = params[:price]
     menu_id = params[:menu_id]
     menuItem = MenuItem.new(name: name, menu_id: menu_id, description: description, price: price)
@@ -31,20 +31,20 @@ class MenuItemsController < ApplicationController
     menu_id = params[:menu_id]
     item = MenuItem.find(params[:id])
     name = item.name.capitalize
-    item.destroy
-
+    item.deletable = true
+    item.save
     redirect_to menu_path(:id => menu_id), notice: "#{name} item was successfully deleted!"
   end
 
   def update
     @menu_item = MenuItem.find(params[:id])
     name = params[:name].capitalize
-    description = params[:description].capitalize
+    description = params[:description]
     price = params[:price]
     menu_id = params[:menu_id]
-    menuItem = MenuItem.new(name: name, menu_id: menu_id, description: description, price: price)
+    menuItem = MenuItem.update(@menu_item.id, name: name, menu_id: menu_id, description: description, price: price)
     if menuItem.save
-      redirect_to menu_path(:id => menu_id), notice: "#{name} item was successfully updated!"
+      redirect_to menu_item_path(menu_id: menu_id), notice: "#{name} item was successfully updated!"
     else
       flash[:error] = menuItem.errors.full_messages.join(", ")
       redirect_to menu_item_path(menu_id: menu_id)

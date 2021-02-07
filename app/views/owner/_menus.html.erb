@@ -1,0 +1,11 @@
+<h2 class=" pb-10  text-4xl">All Menus</h2>
+<% if menus.any? %>
+  <% menus.each do |menu| %>
+    <% if menu.active==true %>
+      <%= link_to menu.name.capitalize ,menu_path(id: menu.id),class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-400 border-8 border-green-400" %>
+    <% else %>
+      <%= link_to menu.name.capitalize ,menu_path(id: menu.id),class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-400 " %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= link_to "Create new menu",new_menu_path,class:  " btn text-2xl text-center py-4 px-10  my-4" %>

@@ -19,8 +19,14 @@ class MenusController < ApplicationController
   def show
     @is_owner = ensure_user_is_owner
     @current_menu_id = params[:id]
-    @menu_items = MenuItem.where(menu_id: @current_menu_id)
+    @menu_items = MenuItem.where(menu_id: @current_menu_id, deletable: nil)
     @menu = Menu.find(@current_menu_id)
+    if MenuItem.where(menu_id: @current_menu_id, deletable: nil).empty?
+      @menu.active = nil
+      @menu.save
+      flash[:error] = "#{@menu.name} menu is empty! Setting it to inactive!"
+    end
+    render "show"
   end
 
   def update
@@ -30,8 +36,7 @@ class MenusController < ApplicationController
       if Menu.where(active: true).any?
         flash[:error] = "#{Menu.find_by(active: true).name} menu is already active!"
         redirect_to menu_path(params[:id]) and return
-      end
-      if !MenuItem.where(menu_id: menu.id).any?
+      elsif MenuItem.where(menu_id: menu.id, deletable: nil).empty?
         flash[:error] = "#{menu.name} menu is empty! Cannot set it active!"
         redirect_to menu_path(params[:id]) and return
       end

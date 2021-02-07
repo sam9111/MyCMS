@@ -5,20 +5,16 @@
       <div class="btn text-2xl text-center py-4 px-10  my-4 bg-purple-600 mx-80 inline-flex " >
         <%= link_to menuItem.name,menu_item_path(id:menuItem.id,menu_id:@current_menu_id)%>
         <p class="mx-auto">$<%= menuItem.price %></p>
-        <%if @is_owner%>
-          <%= link_to image_tag("https://img.icons8.com/cute-clipart/40/000000/delete.png", alt: 'Trash-icon'),menu_item_path(id:menuItem.id,menu_id:@current_menu_id),
+        <%= link_to image_tag("https://img.icons8.com/cute-clipart/40/000000/delete.png", alt: 'Trash-icon'),menu_item_path(id:menuItem.id,menu_id:@current_menu_id),
           method: "delete",class:"ml-auto" %>
-        <% end %>
       </div>
     <% end %>
   <% else %>
     <h2 class=" pb-20  text-4xl ml-40 text-red-600">Menu is empty!</h2>
   <% end %>
-  <%if @is_owner%>
-    <%= link_to "Add items!",new_menu_item_path(menu_id:@current_menu_id),class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-400 mx-80" %>
-    <% if @menu.active==true %>
-      <%= link_to "Set menu as inactive",menu_path(id:@current_menu_id),method:"put",class: "btn text-2xl bg-blue-700 text-center py-4 px-14  my-4 bg-blue-400 mx-80" %>
-    <% else %>
-      <%= link_to "Set menu as active",menu_path(id:@current_menu_id,active: true),method:"put",class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-700 mx-80" %>
-    <%end%>
+  <%= link_to "Add items!",new_menu_item_path(menu_id:@current_menu_id),class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-400 mx-80" %>
+  <% if @menu.active==true %>
+    <%= link_to "Set menu as inactive",menu_path(id:@current_menu_id),method:"put",class: "btn text-2xl bg-blue-700 text-center py-4 px-14  my-4 bg-blue-400 mx-80" %>
+  <% else %>
+    <%= link_to "Set menu as active",menu_path(id:@current_menu_id,active: true),method:"put",class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-700 mx-80" %>
   <%end%>

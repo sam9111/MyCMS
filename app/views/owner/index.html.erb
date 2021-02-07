@@ -1,65 +1,9 @@
 <div class="flex-row flex">
   <section class="flex flex-col ml-10">
-    <h2 class=" pb-10  text-4xl">All Users</h2>
-    <% if @users.any? %>
-      <table class="table-auto">
-        <thead>
-          <tr class="text-center underline">
-            <th class="p-4 " >ID</th>
-            <th class="p-4 ">Created On</th>
-            <th class="p-4 " >Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <tr class="text-center">
-              <td class="p-4 " ><%= user.id%></td>
-              <td class="p-4 "><%= user.created_at.to_date %></td>
-              <td class="p-4 "><%= user.name.capitalize %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <p class="text-red-600  ">No users!</p>
-    <% end %>
-    <h2 class=" pb-10  text-4xl mt-10">Orders to be delivered</h2>
-    <% if @undelivered_orders.any? %>
-      <table class="table-auto">
-        <thead>
-          <tr class="text-center underline">
-            <th class="p-4 ">ID</th>
-            <th class="p-4 ">User ID</th>
-            <th class="p-4 ">Date ordered</th>
-            <th class="p-4 ">Total</th>
-          </tr>
-        </tr>
-      </thead>
-      <tbody>
-        <% @undelivered_orders.each do |order| %>
-          <tr class="text-center">
-            <td class="p-4 "><%= order.id%></td>
-            <td class="p-4 "><%= order.user_id%></td>
-            <td class="p-4 "><%= order.date.to_date%></td>
-            <td class="p-4 ">$<%= order.total %></td>
-          </tr>
-        <% end%>
-      </tbody>
-    </table>
-  <% else %>
-    <p class="text-red-600">No undelivered orders!</p>
-  <% end%>
-</section>
-<section class="flex flex-col mx-40 ">
-  <h2 class=" pb-10  text-4xl">All Menus</h2>
-  <% if @menus.any? %>
-    <% @menus.each do |menu| %>
-      <% if menu.active==true %>
-        <%= link_to menu.name.capitalize ,menu_path(id: menu.id),class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-400 border-8 border-green-400" %>
-      <% else %>
-        <%= link_to menu.name.capitalize ,menu_path(id: menu.id),class: "btn text-2xl text-center py-4 px-14  my-4 bg-blue-400 " %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <%= link_to "Create new menu",new_menu_path,class:  " btn text-2xl text-center py-4 px-10  my-4" %>
-</section>
+    <%= render partial: "all_users" ,locals:{users:@users}%>
+    <%= render partial: "pending_orders" ,locals:{undelivered_orders: @undelivered_orders}%>
+  </section>
+  <section class="flex flex-col mx-40 ">
+    <%= render partial: "menus" ,locals:{menus: @menus}%>
+  </section>
+</div>

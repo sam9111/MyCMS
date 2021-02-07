@@ -1,6 +1,11 @@
 <h2 class="text-center text-4xl pb-10">Order</h2>
-<p class="text-center text-3xl mb-10">ID: <%=@order.id%></p>
-<section >
+<p class="text-center text-3xl">ID: <%=@order.id%></p>
+<% if @order.delivered_at %>
+  <p class="text-center p-4 text-green-600">Delivered on <%= @order.delivered_at.to_date %></p>
+<% else %>
+  <p class=" text-red-600 text-center p-4">Not delivered yet</p>
+<% end %>
+<section class="mt-10">
   <ol class="flex flex-col mx-80 border-black border-4 rounded-3xl text-center py-4"><% @order_items.each do |item| %>
       <li class="inline-flex p-8">
         <p class=""><%= item.menu_item_name%></p>
@@ -9,9 +14,4 @@
       </li>
     <% end%>
   </ol>
-  <% if @order.delivered_at %>
-    <p class="p-4 text-center  mt-10">Delivered on <%= order.delivered_at.to_date %></p>
-  <% else %>
-    <p class="p-4 text-red-600 text-center mt-20">Not delivered yet</p>
-  <% end %>
 </section>
