@@ -1,12 +1,9 @@
 # myCMS
 
-A cafeteria management system built completely using the Ruby on Rails framework. 
+Built 
 
-Owner email: sam@gmail.com
-
-Owner password: sweety
-
-https://samyuktha-my-cms.herokuapp.com/
+Test Owner email: sam@gmail.com
+Test Owner password: sweety
 
 
 
